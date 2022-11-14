@@ -18,7 +18,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import id.gits.android_compose.example.Index
-import id.gits.modular.core.compose.GitsScaffold
+import id.gits.ui_compose.compose.GitsScaffold
 import id.gits.ui_compose.component.CardItem
 import id.gits.ui_compose.component.CardItemComponent
 import id.gits.ui_compose.compose.rememberGitsAppState

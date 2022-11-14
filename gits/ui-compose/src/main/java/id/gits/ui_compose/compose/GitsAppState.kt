@@ -10,7 +10,6 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import id.gits.modular.core.compose.GitsColor
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 

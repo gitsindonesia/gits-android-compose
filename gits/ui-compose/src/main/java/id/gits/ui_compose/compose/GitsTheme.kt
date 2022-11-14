@@ -1,4 +1,4 @@
-package id.gits.modular.core.compose
+package id.gits.ui_compose.compose
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme

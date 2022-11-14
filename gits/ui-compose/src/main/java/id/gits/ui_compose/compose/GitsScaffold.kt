@@ -1,4 +1,4 @@
-package id.gits.modular.core.compose
+package id.gits.ui_compose.compose
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
@@ -10,9 +10,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.Dp
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
-import id.gits.ui_compose.compose.GitsAppState
-import id.gits.ui_compose.compose.GitsSnackBarHost
-import id.gits.ui_compose.compose.rememberGitsAppState
 
 /**
  * Created by Kudzoza
