@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
+    id 'maven-publish'
 }
 
 android {
@@ -86,4 +87,18 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+
+                groupId = 'id.gits.android_compose'
+                artifactId = 'gits-ui-compose'
+                version = '1.0.0'
+            }
+        }
+    }
 }
