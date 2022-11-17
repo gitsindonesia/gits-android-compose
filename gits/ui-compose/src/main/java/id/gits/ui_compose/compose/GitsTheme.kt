@@ -5,56 +5,39 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.runtime.ReadOnlyComposable
-import androidx.compose.runtime.remember
+import androidx.compose.ui.graphics.Color
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 /**
  * Created by Kudzoza
  * on 12/09/2022
  **/
 
-object GitsAppTheme {
-    val colors: GitsColor
-        @Composable
-        @ReadOnlyComposable
-        get() = GitsLocalColors.current
-    val typography: GitsTypography
-        @Composable
-        @ReadOnlyComposable
-        get() = GitsLocalTypography.current
-    val dimensions: GitsDimension
-        @Composable
-        @ReadOnlyComposable
-        get() = GitsLocalDimension.current
-}
-
 @Composable
-fun GitsTheme(
-    colors: GitsColor = GitsAppTheme.colors,
-    typography: GitsTypography = GitsAppTheme.typography,
-    dimensions: GitsDimension = GitsAppTheme.dimensions,
-    enableDarkTheme: Boolean = false,
-    content: @Composable () -> Unit,
-) {
-    val rememberedColors = remember { colors.copy() }
-    CompositionLocalProvider(
-        GitsLocalColors provides rememberedColors,
-        GitsLocalDimension provides dimensions,
-        GitsLocalTypography provides typography
+fun GitsTheme(content: @Composable () -> Unit) {
+    val systemUiController = rememberSystemUiController()
+    systemUiController.setSystemBarsColor(
+        if (isSystemInDarkTheme() && GitsScheme.enableDarkTheme.value) Color.DarkGray
+        else Color.White
+    )
+    MaterialTheme(
+        colors = if (isSystemInDarkTheme() && GitsScheme.enableDarkTheme.value) darkColors(
+            primary = GitsScheme.colorScheme.value.primary,
+            primaryVariant = GitsScheme.colorScheme.value.primaryVariant,
+            secondary = GitsScheme.colorScheme.value.secondary,
+            secondaryVariant = GitsScheme.colorScheme.value.secondaryVariant,
+            background = GitsScheme.colorScheme.value.background,
+            error = GitsScheme.colorScheme.value.error,
+        )
+        else lightColors(
+            primary = GitsScheme.colorScheme.value.primary,
+            primaryVariant = GitsScheme.colorScheme.value.primaryVariant,
+            secondary = GitsScheme.colorScheme.value.secondary,
+            secondaryVariant = GitsScheme.colorScheme.value.secondaryVariant,
+            background = GitsScheme.colorScheme.value.background,
+            error = GitsScheme.colorScheme.value.error,
+        )
     ) {
-        MaterialTheme(
-            colors =
-            if (isSystemInDarkTheme() && enableDarkTheme) darkColors()
-            else lightColors(
-                primary = colors.primary,
-                primaryVariant = colors.primaryVariant,
-                secondary = colors.secondary,
-                background = colors.background,
-                error = colors.error,
-            )
-        ) {
-            content()
-        }
+        content()
     }
 }

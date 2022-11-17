@@ -46,5 +46,3 @@ data class GitsTypography(
         fontSize = 12.sp
     ),
 )
-
-internal val GitsLocalTypography = staticCompositionLocalOf { GitsTypography() }

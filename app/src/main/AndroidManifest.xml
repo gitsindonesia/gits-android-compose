@@ -12,6 +12,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:name=".example.GitsApplication"
         android:theme="@style/Theme.GitsAndroidCompose"
         tools:targetApi="31">
         <activity

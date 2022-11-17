@@ -3,7 +3,6 @@ package id.gits.ui_compose.compose
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
-import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
 
 /**
@@ -14,6 +13,7 @@ import androidx.compose.ui.graphics.Color
 private val colorPrimary = Color(0xFF00B7FF)
 private val colorPrimaryVariant = Color(0xFF0689BD)
 private val colorSecondary = Color(0xFFF38558)
+private val colorSecondaryVariant = Color(0xFFD1511D)
 private val colorTextPrimary = Color(0xFF555555)
 private val colorTextSecondary = Color(0xFF888888)
 private val colorBackground = Color(0xFFFFFFFF)
@@ -23,6 +23,7 @@ class GitsColor(
     primary: Color = colorPrimary,
     primaryVariant: Color = colorPrimaryVariant,
     secondary: Color = colorSecondary,
+    secondaryVariant: Color = colorSecondaryVariant,
     textPrimary: Color = colorTextPrimary,
     textSecondary: Color = colorTextSecondary,
     background: Color = colorBackground,
@@ -35,6 +36,9 @@ class GitsColor(
         private set
 
     var secondary by mutableStateOf(secondary)
+        private set
+
+    var secondaryVariant by mutableStateOf(secondaryVariant)
         private set
 
     var textPrimary by mutableStateOf(textPrimary)
@@ -53,6 +57,7 @@ class GitsColor(
         primary: Color = this.primary,
         primaryVariant: Color = this.primaryVariant,
         secondary: Color = this.secondary,
+        secondaryVariant: Color = this.secondaryVariant,
         textPrimary: Color = this.textPrimary,
         textSecondary: Color = this.textSecondary,
         background: Color = this.background,
@@ -61,11 +66,10 @@ class GitsColor(
         primary,
         primaryVariant,
         secondary,
+        secondaryVariant,
         textPrimary,
         textSecondary,
         background,
         error
     )
 }
-
-internal val GitsLocalColors = staticCompositionLocalOf { GitsColor() }

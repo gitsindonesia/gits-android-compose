@@ -11,24 +11,36 @@ import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.ArrowBack
+import androidx.compose.material.icons.outlined.Face
+import androidx.compose.material.icons.outlined.Settings
+import androidx.compose.material.icons.rounded.Settings
+import androidx.compose.material.icons.rounded.ThumbUp
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import id.gits.android_compose.example.GitsApplication
 import id.gits.android_compose.example.Index
-import id.gits.ui_compose.compose.GitsScaffold
 import id.gits.ui_compose.component.CardItem
 import id.gits.ui_compose.component.CardItemComponent
+import id.gits.ui_compose.compose.GitsScaffold
+import id.gits.ui_compose.compose.GitsScheme
 import id.gits.ui_compose.compose.rememberGitsAppState
 
 class MainActivity : ComponentActivity() {
+
+    private val gitsApplication
+        get() = (application as GitsApplication)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             val gitsAppState = rememberGitsAppState()
             var title by remember { mutableStateOf("Gits Component") }
+            var isOnPrimaryTheme by remember { mutableStateOf(true) }
+            var enableDarkTheme by remember { mutableStateOf(false) }
 
             LaunchedEffect(gitsAppState.navController) {
                 gitsAppState.navController.currentBackStackEntryFlow.collect { backStackEntry ->
@@ -53,7 +65,23 @@ class MainActivity : ComponentActivity() {
                                 }
                             }
                         },
-                        title = { Text(text = title) }
+                        title = { Text(text = title) },
+                        actions = {
+                            IconButton(onClick = {
+                                enableDarkTheme = !enableDarkTheme
+                                GitsScheme.enableDarkTheme.value = enableDarkTheme
+                            }) {
+                                Icon(imageVector = Icons.Outlined.Settings, contentDescription = null)
+                            }
+                            IconButton(onClick = {
+                                GitsScheme.colorScheme.value =
+                                    if (isOnPrimaryTheme) gitsApplication.secondaryTheme
+                                    else gitsApplication.primaryTheme
+                                isOnPrimaryTheme = !isOnPrimaryTheme
+                            }) {
+                                Icon(imageVector = Icons.Outlined.Face, contentDescription = null)
+                            }
+                        }
                     )
                 }
             ) {

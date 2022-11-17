@@ -37,9 +37,7 @@ fun GitsScaffold(
     contentColor: Color = contentColorFor(backgroundColor),
     content: @Composable (GitsAppState) -> Unit,
 ) {
-    val systemUiController = rememberSystemUiController()
     GitsTheme {
-        systemUiController.setSystemBarsColor(Color.White)
         Surface {
             Scaffold(
                 modifier = modifier,
